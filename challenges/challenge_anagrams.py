@@ -33,9 +33,7 @@ def is_anagram(first_string, second_string):
     try:
         first_arr = list(first_string.lower())
         second_arr = list(second_string.lower())
-        if merge_sort(first_arr) == merge_sort(second_arr):
-            return True
-        return False
+        return merge_sort(first_arr) == merge_sort(second_arr)
 
     except IndexError:
         return False
