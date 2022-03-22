@@ -1,39 +1,40 @@
-def merge_sort(array):
-    if len(array) <= 1:
-        return array
+def merge_sort(string):
+    if len(string) <= 1:
+        return string
 
-    mid = len(array) // 2
+    mid = len(string) // 2
 
-    left, right = merge_sort(array[:mid]), merge_sort(array[mid:])
+    left, right = merge_sort(string[:mid]), merge_sort(string[mid:])
 
-    return merge(left, right, array.copy())
+    return merge(left, right)
 
 
-def merge(left, right, merged):
+def merge(left, right):
     left_cursor, right_cursor = 0, 0
+    merged = ''
 
     while left_cursor < len(left) and right_cursor < len(right):
         if left[left_cursor] <= right[right_cursor]:
-            merged[left_cursor + right_cursor] = left[left_cursor]
+            merged += left[left_cursor]
             left_cursor += 1
         else:
-            merged[left_cursor + right_cursor] = right[right_cursor]
+            merged += right[right_cursor]
             right_cursor += 1
 
     for left_cursor in range(left_cursor, len(left)):
-        merged[left_cursor + right_cursor] = left[left_cursor]
+        merged += left[left_cursor]
 
     for right_cursor in range(right_cursor, len(right)):
-        merged[left_cursor + right_cursor] = right[right_cursor]
+        merged += right[right_cursor]
 
     return merged
 
 
 def is_anagram(first_string, second_string):
     try:
-        first_arr = list(first_string.lower())
-        second_arr = list(second_string.lower())
-        return merge_sort(first_arr) == merge_sort(second_arr)
+        first_str = first_string.lower()
+        second_str = second_string.lower()
+        return merge_sort(first_str) == merge_sort(second_str)
 
     except IndexError:
         return False
