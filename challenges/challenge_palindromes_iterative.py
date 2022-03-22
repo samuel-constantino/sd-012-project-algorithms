@@ -1,2 +1,17 @@
+def reverse(word):
+    word_reverse = []
+    for c in word:
+        word_reverse.insert(0, c)
+    return "".join(word_reverse)
+
+
 def is_palindrome_iterative(word):
-    """ Faça o código aqui. """
+    if word == '':
+        return False
+
+    word_reverse = reverse(word)
+
+    if word == word_reverse:
+        return True
+
+    return False
